@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from . import models
 from .database import engine
 from .routers import post,user,auth, vote
@@ -25,4 +26,5 @@ app.include_router(vote.router)
 
 @app.get("/")
 def root():
-    return {"message": "Hello World sup"}
+    message = "Welcome to my FastAPI project! Click <a href='https://fastapi-sudarshan.herokuapp.com/docs'>here</a> to access the API features through documentation."
+    return HTMLResponse(content=message)
